@@ -1,3 +1,6 @@
-const x = 'Hallo Welt 2';
-const test = (text) => { alert(text); };
-test(x);
+import React from 'react';
+import ReactDOM from 'react-dom';
+import HelloWorld from './hello-world';
+
+const container = document.getElementById('app');
+ReactDOM.render(<HelloWorld />, container);
