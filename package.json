@@ -1,0 +1,23 @@
+{
+  "name": "tests4.me",
+  "version": "1.0.0",
+  "description": "Website for tests4.me",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/learningmedia/tests4.me.git"
+  },
+  "author": "Tests4.me-Team kontakt@tests4.me",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "del": "~4.1.0",
+    "gulp": "~4.0.0",
+    "webpack": "~4.30.0"
+  },
+  "dependencies": {
+    "prop-types": "~15.7.2",
+    "react": "~16.8.6",
+    "react-dom": "~16.8.6"
+  }
+}
