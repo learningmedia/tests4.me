@@ -17,19 +17,13 @@ jobs:
           key: yarn-cache-{{ checksum "yarn.lock" }}
       - run:
           name: Install Node Modules
-          command: yarn install --non-interactive --check-files --frozen-lockfile
+          command: yarn install --production=false --non-interactive --check-files --frozen-lockfile
       - save_cache:
           key: yarn-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
       - run:
-          name: Show bin folder
-          command: ls ./node_modules/.bin/
-      - run:
-          name: Build 1
-          command: node ./node_modules/.bin/gulp ci --all
-      - run:
-          name: Build 2
+          name: Build
           command: ./node_modules/.bin/gulp ci --all
       - persist_to_workspace:
           root: "."
