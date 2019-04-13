@@ -20,7 +20,9 @@
     "gulp-csso": "~3.0.1",
     "gulp-less": "~4.0.1",
     "less-plugin-autoprefix": "~2.0.0",
-    "webpack": "~4.30.0"
+    "merge-stream": "~1.0.1",
+    "webpack": "~4.30.0",
+    "yargs": "~13.2.2"
   },
   "dependencies": {
     "prop-types": "~15.7.2",
