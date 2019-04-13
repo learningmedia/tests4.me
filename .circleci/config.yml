@@ -23,7 +23,13 @@ jobs:
           paths:
             - ~/.cache/yarn
       - run:
-          name: Build
+          name: Show bin folder
+          command: ls ./node_modules/.bin/
+      - run:
+          name: Build 1
+          command: node ./node_modules/.bin/gulp ci --all
+      - run:
+          name: Build 2
           command: ./node_modules/.bin/gulp ci --all
       - persist_to_workspace:
           root: "."
