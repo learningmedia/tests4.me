@@ -3,7 +3,7 @@ import { Component } from 'react';
 
 class HelloMunic extends Component {
   render() {
-    return (<p>Hello Munic!</p>);
+    return (<p>Hello Home Website!</p>);
   }
 }
 
