@@ -5,12 +5,15 @@ const yargs = require('yargs');
 const csso = require('gulp-csso');
 const less = require('gulp-less');
 const webpack = require('webpack');
+const connect = require('gulp-connect');
 const mergeStream = require('merge-stream');
-const { series, parallel, src, dest } = require('gulp');
 const LessAutoprefix = require('less-plugin-autoprefix');
+const { series, parallel, src, dest, watch } = require('gulp');
 
 const SRC_FOLDER = 'src';
 const DEST_FOLDER = 'dist';
+
+let server;
 
 const projectsToBuild = yargs.argv.all
   ? ['home', 'mathe']
@@ -19,6 +22,8 @@ const projectsToBuild = yargs.argv.all
 if (projectsToBuild.length === 0) {
   projectsToBuild.push('home');
 }
+
+const serverRootDir = `${DEST_FOLDER}/${projectsToBuild[0]}`;
 
 function clean() {
   return del(DEST_FOLDER);
@@ -29,7 +34,8 @@ function buildHtml() {
     src(`${SRC_FOLDER}/${project}/index.html`)
       .pipe(dest(`${DEST_FOLDER}/${project}`))
   );
-  return mergeStream(...streams);
+  return mergeStream(...streams)
+    .pipe(connect.reload());
 }
 
 async function buildJs() {
@@ -60,6 +66,8 @@ async function buildJs() {
       timings: false,
       version: false
     }));
+  } else if (server) {
+    src(`${serverRootDir}/main.js`, { read: false }).pipe(connect.reload());
   }
 }
 
@@ -78,7 +86,19 @@ function buildCss() {
       .pipe(csso())
       .pipe(dest(`${DEST_FOLDER}/${project}`))
   );
-  return mergeStream(...streams);
+  return mergeStream(...streams)
+    .pipe(connect.reload());
+}
+
+function serveReload() {
+  server = connect.server({
+    root: [serverRootDir],
+    port: 3000,
+    livereload: true
+  });
+  watch('src/**/*.js', buildJs);
+  watch('src/**/*.less', buildCss);
+  watch('src/**/*.html', buildHtml);
 }
 
 const build = parallel(buildJs, buildHtml, buildCss);
@@ -87,5 +107,6 @@ const ci = series(clean, build);
 module.exports = {
   build,
   ci,
-  default: build
+  serveReload,
+  default: series(build, serveReload)
 };

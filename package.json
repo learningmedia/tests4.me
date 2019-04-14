@@ -18,6 +18,7 @@
     "del": "~4.1.0",
     "gulp": "~4.0.0",
     "gulp-cli": "~2.1.0",
+    "gulp-connect": "~5.7.0",
     "gulp-csso": "~3.0.1",
     "gulp-less": "~4.0.1",
     "less-plugin-autoprefix": "~2.0.0",
