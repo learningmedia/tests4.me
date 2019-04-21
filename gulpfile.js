@@ -29,6 +29,15 @@ function clean() {
   return del(DEST_FOLDER);
 }
 
+function buildFonts() {
+  const streams = projectsToBuild.map(project =>
+    src('node_modules/semantic-ui-css//themes/default/assets/fonts/*')
+      .pipe(dest(`${DEST_FOLDER}/${project}/fonts`))
+  );
+  return mergeStream(...streams)
+    .pipe(connect.reload());
+}
+
 function buildHtml() {
   const streams = projectsToBuild.map(project =>
     src(`${SRC_FOLDER}/${project}/index.html`)
@@ -101,7 +110,7 @@ function serveReload() {
   watch('src/**/*.html', buildHtml);
 }
 
-const build = parallel(buildJs, buildHtml, buildCss);
+const build = parallel(buildJs, buildHtml, buildCss, buildFonts);
 const ci = series(clean, build);
 
 module.exports = {

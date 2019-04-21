@@ -1,3 +1,64 @@
-body {
-  background-color: azure;
+@import (less) '../../node_modules/semantic-ui-css/semantic.css';
+
+@font-face {
+  font-family: 'Icons';
+  src: url('/fonts/icons.eot');
+  src: url('/fonts/icons.eot?#iefix') format('embedded-opentype'), url('/fonts/icons.woff2') format('woff2'), url('/fonts/icons.woff') format('woff'), url('/fonts/icons.ttf') format('truetype'), url('/fonts/icons.svg#icons') format('svg');
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-decoration: inherit;
+  text-transform: none;
+}
+
+@font-face {
+  font-family: 'outline-icons';
+  src: url('/fonts/outline-icons.eot');
+  src: url('/fonts/outline-icons.eot?#iefix') format('embedded-opentype'), url('/fonts/outline-icons.woff2') format('woff2'), url('/fonts/outline-icons.woff') format('woff'), url('/fonts/outline-icons.ttf') format('truetype'), url('/fonts/outline-icons.svg#icons') format('svg');
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-decoration: inherit;
+  text-transform: none;
+}
+
+@font-face {
+  font-family: 'brand-icons';
+  src: url('/fonts/brand-icons.eot');
+  src: url('/fonts/brand-icons.eot?#iefix') format('embedded-opentype'), url('/fonts/brand-icons.woff2') format('woff2'), url('/fonts/brand-icons.woff') format('woff'), url('/fonts/brand-icons.ttf') format('truetype'), url('/fonts/brand-icons.svg#icons') format('svg');
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-decoration: inherit;
+  text-transform: none;
+}
+
+html, body {
+  background: #f7f7f7 !important;
+}
+
+.panel {
+  position: relative;
+  padding: 20px;
+  background: #fff;
+  min-height: 80vh;
+  box-shadow: 0 1px 2px #ccc;
+
+  &.hover-shadow:hover {
+    box-shadow: 0 2px 8px #bbb;
+  }
+}
+
+.flexbox {
+  display: flex;
+}
+
+.flex {
+  &.none {
+    flex: none;
+  }
+
+  &.rest {
+    flex: 1 0 0%;
+  }
 }

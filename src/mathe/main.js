@@ -1,6 +1,6 @@
 import React from 'react';
+import Test from './test';
 import ReactDOM from 'react-dom';
-import MultiplicationTablePractice from './multiplication-table-practice';
 
 const container = document.getElementById('app');
-ReactDOM.render(<MultiplicationTablePractice />, container);
+ReactDOM.render(<Test />, container);
